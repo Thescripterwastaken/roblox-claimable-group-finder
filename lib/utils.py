@@ -1,4 +1,3 @@
-from .constants import EMBED_FOOTER_TEXT
 from socket import socket
 from json import dumps as json_dumps
 from base64 import b64encode
@@ -78,18 +77,17 @@ def send_webhook(url, **kwargs):
         sock.recv(4096)
     finally:
         shutdown_socket(sock)
-
 def make_embed(group_info, date):
     return dict(
-        title="Found claimable group",
+        title="Found claimable group", color=0xF23434,
         url=f"https://www.roblox.com/groups/{group_info['id']}",
-        fields=[
+          fields=[
             dict(name="Group ID", value=group_info["id"]),
             dict(name="Group Name", value=group_info["name"]),
             dict(name="Group Members", value=group_info["memberCount"])
         ],
         footer=dict(
-            text=EMBED_FOOTER_TEXT
+            text='ⓒFinder | discord.gg/qXVUhy8BBv•'
         ),
         timestamp=date.isoformat()
     )
